@@ -396,11 +396,11 @@ if __name__ == '__main__':
 
             elif not flag and not first:
                 first = True
+                mjd_last = mjd
+                utc_last = utc
                 axr.plot([ut_start,utc],[y,y],'--',color=col, lw=star.lw/2)
                 axr.plot([ut_start,ut_start],[y-lbar,y+lbar],color=col)
                 axr.plot([utc,utc],[y-lbar,y+lbar],color=col)
-                mjd_last = mjd
-                utc_last = utc
                 n_end = n+1
                 if ut_start > utstart + args.offset*(utend-utstart):
                     # repeat target name if the start is delayed to make it
@@ -411,7 +411,7 @@ if __name__ == '__main__':
 
         if flag and not first:
             # stuff left over to plot
-            axr.plot([ut_start,utc],[y,y],'--',color=col, lw=star.lw)
+            axr.plot([ut_start,utc],[y,y],'--',color=col, lw=star.lw/2)
             axr.plot([ut_start,ut_start],[y-lbar,y+lbar],color=col)
             axr.plot([utc,utc],[y-lbar,y+lbar],color=col)
             mjd_last = mjd
