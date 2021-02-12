@@ -396,7 +396,7 @@ if __name__ == '__main__':
 
             elif not flag and not first:
                 first = True
-                axr.plot([ut_start,utc],[y,y],'--',color=col)
+                axr.plot([ut_start,utc],[y,y],'--',color=col, lw=star.lw/2)
                 axr.plot([ut_start,ut_start],[y-lbar,y+lbar],color=col)
                 axr.plot([utc,utc],[y-lbar,y+lbar],color=col)
                 mjd_last = mjd
@@ -411,7 +411,7 @@ if __name__ == '__main__':
 
         if flag and not first:
             # stuff left over to plot
-            axr.plot([ut_start,utc],[y,y],'--',color=col)
+            axr.plot([ut_start,utc],[y,y],'--',color=col, lw=star.lw)
             axr.plot([ut_start,ut_start],[y-lbar,y+lbar],color=col)
             axr.plot([utc,utc],[y-lbar,y+lbar],color=col)
             mjd_last = mjd
