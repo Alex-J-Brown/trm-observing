@@ -250,6 +250,8 @@ if __name__ == '__main__':
         5 : (0.7,0.7,0.7),
         9 : (0.8,0.8,0.8),
     }
+    
+    line_widths = [0.5, 1, 1.5] # define linewidths for backup, medium & top priorities
 
     # Start the plot
     fig = plt.figure(figsize=(args.width,args.height),facecolor='white')
@@ -398,7 +400,7 @@ if __name__ == '__main__':
                 first = True
                 mjd_last = mjd
                 utc_last = utc
-                axr.plot([ut_start,utc],[y,y],'--',color=col, lw=star.lw/2)
+                axr.plot([ut_start,utc],[y,y],'--',color=col, lw=line_widths[star.lw-1])
                 axr.plot([ut_start,ut_start],[y-lbar,y+lbar],color=col)
                 axr.plot([utc,utc],[y-lbar,y+lbar],color=col)
                 n_end = n+1
@@ -411,7 +413,7 @@ if __name__ == '__main__':
 
         if flag and not first:
             # stuff left over to plot
-            axr.plot([ut_start,utc],[y,y],'--',color=col, lw=star.lw/2)
+            axr.plot([ut_start,utc],[y,y],'--',color=col, lw=line_widths[star.lw-1])
             axr.plot([ut_start,ut_start],[y-lbar,y+lbar],color=col)
             axr.plot([utc,utc],[y-lbar,y+lbar],color=col)
             mjd_last = mjd
