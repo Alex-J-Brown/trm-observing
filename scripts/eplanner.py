@@ -194,6 +194,9 @@ if __name__ == '__main__':
     # Location
     if args.telescope in EarthLocation.get_site_names():
         site = EarthLocation.of_site(args.telescope)
+        info = dict(
+            zhole=1.
+        )
     else:
         info = SITES[args.telescope]
         site = coord.EarthLocation.from_geodetic(
@@ -604,7 +607,7 @@ if __name__ == '__main__':
                     # easier to line up names and tracks
                     kwargs = {'ha' : 'right', 'va' : 'center',
                               'size' : 9*args.csize}
-                    axr.text(ut_start-0.2, y, key, **kwargs)
+                    axr.text(utc_start-0.2, y, key, **kwargs)
 
         if afirst:
             # never found any ok bit; move on ...
