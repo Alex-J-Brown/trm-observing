@@ -183,7 +183,7 @@ if __name__ == '__main__':
     # a few checks
     assert(args.airmass > 1 and args.airmass < 6)
     assert(args.width > 0 and args.height > 0)
-    assert(args.telescope in SITES)
+    assert(args.telescope in SITES or args.telescope in EarthLocation.get_site_names())
 
     if args.iers != '':
         iers.conf.iers_auto_url = args.iers
@@ -192,10 +192,13 @@ if __name__ == '__main__':
     date = time.Time(args.date)
 
     # Location
-    info = SITES[args.telescope]
-    site = coord.EarthLocation.from_geodetic(
-        info['long'], info['lat'], info['height']
-    )
+    if args.telescope in EarthLocation.get_site_names():
+        site = EarthLocation.of_site(args.telescope)
+    else:
+        info = SITES[args.telescope]
+        site = coord.EarthLocation.from_geodetic(
+            info['long'], info['lat'], info['height']
+        )
 
     # Load position and ephemeris data
     peinfo = observing.load_pos_eph(args.stardata)
