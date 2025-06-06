@@ -1,7 +1,8 @@
-from distutils.core import setup
+from setuptools import setup
+from setuptools.extension import Extension
 
 setup(name='trm.observing',
-      version='1.0.3',
+      version='1.1.6',
       packages = ['trm', 'trm.observing'],
       scripts=['scripts/eplanner.py', 'scripts/parallactic.py'],
 

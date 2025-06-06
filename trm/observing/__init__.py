@@ -37,6 +37,11 @@ SITES = {
         'height' : 2635., 'zhole' : 4.
     },
 
+    'Keck' : {
+        'long' : '-155 28 30.04', 'lat' : '+19 49 34.9', 
+        'height' : 4145., 'zhole' : 4.
+    },
+
     'TNT' : {
         'long' : '+98 28 00', 'lat' : '+18 34 00',
         'height' : 2457., 'zhole' : 2.
@@ -50,6 +55,11 @@ SITES = {
     'SAAO' : {
         'long' : '+20 48 42', 'lat' : '-32 23 14',
         'height' : 1798., 'zhole' : -1.
+    },
+
+    'Magellan' : {
+        'long' : '-70 42 05.9', 'lat' : '-29 00 35.8',
+        'height' : 2275., 'zhole' : 4.
     },
 }
 
@@ -252,7 +262,7 @@ class Prange(object):
         p1  = float(p1)
         p2  = float(p2)
         if p1 < 1000.:
-            p2  = p2 - m.floor(p2-p1)
+            p2 = p2 - m.floor(p2-p1)
             p_or_t = 'Phase'
         else:
             p_or_t = 'Time'
@@ -284,7 +294,7 @@ def load_ptranges(fname, peinfo):
                         pr.add(line)
 
             except ValueError:
-                print('ValueError found in',line)
+                print('Could not interpret',line.strip(),'as a phase or time range')
                 exit(1)
 
     print('Data on',len(prinfo),'phase ranges loaded.')
