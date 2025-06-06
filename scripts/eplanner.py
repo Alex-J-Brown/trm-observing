@@ -268,6 +268,8 @@ if __name__ == '__main__':
         5 : (0.7,0.7,0.7), # grey
         9 : (0.8,0.8,0.8),
     }
+    
+    line_widths = [0.5, 1, 1.5] # define linewidths for backup, medium & top priorities
 
     # more memorable names
     COLS = {
@@ -579,12 +581,13 @@ if __name__ == '__main__':
 
             if (not flag or n == len(ok)-1) and not first:
                 first = True
+
                 if key not in prinfo:
                     # highlight anytime objects
                     axr.plot([utc_start,utc_end],[y,y],color=COLS['highlight'],lw=6,zorder=-10)
 
                 # plot visibility period, highlighted if close to the Moon
-                axr.plot([utc_start,utc_end],[y,y],'--',color=col_moon)
+                axr.plot([utc_start,utc_end],[y,y],'--',color=col_moon, lw=line_widths[star.lw-1])
                 axr.plot([utc_start,utc_start],[y-lbar,y+lbar],color=col_moon)
                 axr.plot([utc_end,utc_end],[y-lbar,y+lbar],color=col_moon)
 
@@ -598,7 +601,7 @@ if __name__ == '__main__':
                     # easier to line up names and tracks
                     kwargs = {'ha' : 'right', 'va' : 'center',
                               'size' : 9*args.csize}
-                    axr.text(utc_start-0.2, y, key, **kwargs)
+                    axr.text(ut_start-0.2, y, key, **kwargs)
 
         if afirst:
             # never found any ok bit; move on ...
